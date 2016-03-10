@@ -1,0 +1,18 @@
+{
+   "browser_action": {
+      "default_icon": "icon.png",
+      "default_popup": "popup.html",
+      "default_title": "Сео статистика сайта SeoMagic"
+   },
+   "description": "Расширение показывает количество проиндексированных страниц в Яндекс и Google, Тиц, АГС, проверка индексации страницы.",
+   "icons": {
+      "16": "icon16.png",
+      "48": "icon48.png"
+   },
+   "manifest_version": 2,
+   "name": "Сео статистика сайта от @amxm",
+   "permissions": [ "storage", "tabs", "http://bar-navig.yandex.ru/", "http://toolbarqueries.google.com/","https://yandex.ru/","https://www.google.ru/","https://www.google.com/","http://amserver.ru/"],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "1.2",
+   "options_page": "options.html"
+}

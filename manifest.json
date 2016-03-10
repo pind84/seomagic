@@ -2,15 +2,15 @@
    "browser_action": {
       "default_icon": "icon.png",
       "default_popup": "popup.html",
-      "default_title": "Seo Magic - информер тиц, индексации, быстрые ссылки"
+      "default_title": "Seo Magic - информер тиц, индексации страниц, быстрые ссылки"
    },
-   "description": "Расширение показывает количество проиндексированных страниц в Яндекс и Google, Тиц, АГС, проверка индексации страницы. Быстрые, настраиваемые ссылки на проверку сайта в различных сео сервисах.",
+   "description": "Расширение показывает количество проиндексированных страниц в Яндекс и Google, Тиц, АГС, проверка индексации страницы",
    "icons": {
       "16": "icon16.png",
       "48": "icon48.png"
    },
    "manifest_version": 2,
-   "name": "Seo Magic - информер тиц, индексации, быстрые ссылки",
+   "name": "Seo Magic - информер тиц, индексации страниц",
    "permissions": [ "storage", "tabs", "http://bar-navig.yandex.ru/", "http://toolbarqueries.google.com/","https://yandex.ru/","https://www.google.ru/","https://www.google.com/","https://www.nic.ru/","https://www.reg.ru/","http://amserver.ru/"],
    "update_url": "https://clients2.google.com/service/update2/crx",
    "version": "1.3",

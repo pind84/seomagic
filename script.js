@@ -97,7 +97,12 @@
 
 
 		// возраст домена через nic.ru
-		get_url( "https://www.nic.ru/whois/?query=" + domen, whois_nic);
+
+		if (domen.match(/.ru/)){
+			get_url( "https://www.nic.ru/whois/?query=" + domen, whois_nic);
+		} else {
+			document.getElementById('vozrast').innerHTML = '';
+		}
 		//get_url( "https://www.reg.ru/whois/?dname=" + domen, whois_nic);
 		
 		function whois_nic(str){
@@ -132,10 +137,6 @@
 
 				result += ' <small>['+d1.getDate()+'.'+(d1.getMonth()<9?'0':'')+''+(d1.getMonth()+1)+'.'+d1.getFullYear()+']</small>';
 
-			}
-
-			if (!result){
-				document.getElementById('vozrast').innerHTML = '';
 			}
 
 			document.getElementById('whois_created').innerHTML = result;	

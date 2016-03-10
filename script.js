@@ -66,6 +66,10 @@
 				var yandex_index = 0;
 			}
 
+			if (!str || str.match('/captcha/')){
+				var yandex_index='Error';
+			}	
+
 			document.getElementById('yandex_index').innerHTML = yandex_index;	
 		}
 
@@ -83,8 +87,60 @@
 				var google_index = 0;
 			}
 
+			if (!str){
+				var google_index='Error';
+			}
+			
+
 			document.getElementById('google_index').innerHTML = google_index;	
 		}
+
+
+		// возраст домена через nic.ru
+		get_url( "https://www.nic.ru/whois/?query=" + domen, whois_nic);
+		//get_url( "https://www.reg.ru/whois/?dname=" + domen, whois_nic);
+		
+		function whois_nic(str){
+			
+			
+			var found = str.match(/(created|Creation).+?([0-9]{4}.[0-9]{2}.[0-9]{2})/);
+			if (found){
+				var whois_created = found[2];
+				var d1 = new Date(whois_created);
+				var dn = new Date();
+				
+
+				var dmonth = (dn.getMonth()-d1.getMonth());
+				var dyear = (dn.getFullYear()-d1.getFullYear());
+				var dday = (dn.getDate()-d1.getDate());
+
+				if (dday<0){
+					dday+=30;
+					dmonth-=1;
+				}
+
+				if (dmonth<0) {
+					dmonth+=12;
+					dyear-=1;
+				}
+
+				var result = '';
+
+				if (dyear>0) result = dyear + ' ' + declOfNum(dyear,['год','года','лет']) + ' ';
+				if (dday>0 && dmonth>0) result += dmonth + ' мес. ';
+				result += dday + ' '+declOfNum(dday,['день','дня','дней']);
+
+				result += ' <small>['+d1.getDate()+'.'+(d1.getMonth()<9?'0':'')+''+(d1.getMonth()+1)+'.'+d1.getFullYear()+']</small>';
+
+			}
+
+			if (!result){
+				document.getElementById('vozrast').innerHTML = '';
+			}
+
+			document.getElementById('whois_created').innerHTML = result;	
+		}
+
 
 		// информация о сервере
 		get_url( "http://amserver.ru/amextension.php?domen=" + domen, site_info);
@@ -124,4 +180,7 @@
 
 
 
-
+	function declOfNum(number, titles) {  
+	    cases = [2, 0, 1, 1, 1, 2];  
+	    return titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];  
+	}

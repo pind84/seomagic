@@ -21,6 +21,8 @@
 	    var title = tabs[0].title;
 
 
+		//console.log('url = '+url);
+
 	    // получаем домен
 	    var a      = document.createElement('a');
         a.href = url;

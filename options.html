@@ -3,16 +3,14 @@
 <head>
 <title>Seo расширение - настройки</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <style type="text/css">
 	
 #main {
-	text-align:center;
 	font-size:15px;
 	font-family: Georgia;
 }
-#main div {
-	padding:5px;
-}
+
 
 #news {
 	text-align:left;
@@ -22,11 +20,15 @@
 </head>
 <body>
 <div id="main">
+
+<div class="col-xs-12 col-sm-9" style="float: none;margin: 0 auto;padding:10px;">
+
 <h1>Настройки</h1>
 
-<div>
-Размер шрифта:
-<select id="fontsize">
+
+<div class="form-group">
+<label for="fontsize">Размер шрифта:</label>
+<select style="width:300px;" class="form-control" id="fontsize">
  <option value="13">13</option>
  <option value="14">14</option>
  <option value="15">15</option>
@@ -36,20 +38,38 @@
 </select>
 </div>
 
-<div>
-Панель ссылок:
-<br>
-<textarea id="linksbox" style="height:200px;width:800px;"></textarea>
+<div class="form-group">
+  <label for="checkpage">Проверять индексацию открытой страницы:</label>
+  <select style="width:400px;" class="form-control" id="checkpage">
+ <option value="0">не проверять</option>
+ <option value="3">проверять в Yandex и Google</option>
+ <option value="1">проверять только в Yandex</option>
+ <option value="2">проверять только в Google</option>
+  </select>
 </div>
 
 
-<div id="status"></div>
-<button id="default">Вернуть по умолчанию</button>
-<button id="save">Сохранить изменения</button>
+<div class="form-group">
+  <label for="linksbox">Панель ссылок:</label>
+  <textarea class="form-control" rows="12" id="linksbox"></textarea>
+</div>
+
+
+<div class="alert alert-success" id="status" style="display:none;"></div>
+
+<button class="btn btn-danger" id="default">Вернуть по умолчанию</button>
+<button class="btn btn-success" id="save">Сохранить изменения</button>
 
 <hr>
 <div id="news">
 <h3>Новости</h3>
+<p>
+<b>Версия 1.4 (26.03.2016)</b>
+<br>
+- Добавлена функция проверки индексции открытой страницы в Яндекс и Google<br>
+- Улучшена страница настроек (использован twitter bootsrap), добавлены настройки проверки индексации страниц
+</p>
+
 <p>
 <b>Версия 1.31 (11.03.2016)</b>
 <br>
@@ -86,6 +106,8 @@
 <a target="_blank" href="https://twitter.com/amxm"><img src="http://cbkg.ru/_img/twitter.png"></a>
 <a target="_blank" href="https://www.facebook.com/arnautov"><img src="http://cbkg.ru/_img/facebook.png"></a>
 <a target="_blank" href="mailto:amxm@ya.ru"><img height="18" src="https://cdn0.iconfinder.com/data/icons/elysium-icons/24/Mail.png"></a>
+
+</div>
 
 </div>
 

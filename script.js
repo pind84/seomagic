@@ -3,6 +3,10 @@
 		// получаем настройки
 		chrome.storage.sync.get(null,function (options) {
 
+			// проверка индексации страниц в яндекс и гугл
+			if (options['checkpage']&1) get_url( "https://yandex.ru/yandsearch?text=url%3A"+urlc+"%20%7C%20url%3Awww."+urlc, yandex_page);
+			if (options['checkpage']&2) get_url( "https://www.google.ru/search?q=site%3A"+urlc, google_page);
+
 
 			if (options['fontsize'] && options['linksbox']){
 	        	document.getElementById('main').style.fontSize = options['fontsize'];
@@ -20,6 +24,7 @@
 		var url = tabs[0].url;
 	    var title = tabs[0].title;
 
+	    var urlc = url.replace(/https?:\/\/(www\.)?/g,'');
 
 		//console.log('url = '+url);
 
@@ -29,6 +34,8 @@
         var domen = a.hostname;
         domen = domen.replace('www.','');
 
+
+
         // обновляем в коде
         function replace_main(){
 		    var main = document.getElementById('main');
@@ -36,6 +43,7 @@
 		    str = str.replace(/{domen}/g, domen);
 		    str = str.replace(/{url}/g, url);
 		    str = str.replace(/{title}/g, title);
+		    str = str.replace(/{urlc}/g, urlc);
 		    main.innerHTML = str;
 		}
 
@@ -49,6 +57,45 @@
 		  	document.getElementById('yandex_tic').innerHTML = yandex_tic;	
 		}
 		
+
+		// индекс страницы в яндексе
+		function yandex_page(str){
+
+			if (!str || str.match('/captcha/')){
+				document.getElementById('yap').style.color='orange';
+				return false;
+			}	
+
+			if (str.match(/ничего не нашлось/)){
+				document.getElementById('yap').style.color='red';
+			} else {
+				document.getElementById('yap').style.color='green';
+				document.getElementById('yap').style.fontWeight='bold';
+			}
+
+
+		}
+
+		// индекс страницы в google
+		
+		function google_page(str){
+
+			if (!str){
+				document.getElementById('gop').style.color='orange';
+				return false;
+			}
+
+			if (str.match(/ничего не найдено/)){
+				document.getElementById('gop').style.color='red';
+			} else {
+				document.getElementById('gop').style.color='green';
+				document.getElementById('gop').style.fontWeight='bold';
+			}
+	
+
+		}
+
+
 
 		// яндекс индекс через выдачу
 		get_url( "https://yandex.ru/search/?text=site:" + domen, yandex_index);

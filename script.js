@@ -126,7 +126,7 @@
 		get_url( "https://www.google.ru/search?q=site:" + domen, google_index);
 		function google_index(str){
 			
-			var found = str.match(/примерно (.+?)</);
+			var found = str.match(/(?:примерно|Результатов:) (.+?)</);
 			if (found){
 				var google_index = found[1];
 				google_index  = google_index.replace(/[^\/\d]/g,'');
